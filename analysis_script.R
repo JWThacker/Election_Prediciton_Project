@@ -490,7 +490,7 @@ bp6 + bp7 + bp8 + guide_area() + plot_layout(ncol=2, guides="collect")
      train.set.predictors <- train.set %>% select(-clinton_win_TRUE) %>% scale();     
      labels.train <- keras::to_categorical(train.set$clinton_win_TRUE);
 
-     test.set.predictors <- test.set %>% select(-clinton_win_TRUE) %>% scale();
+      test.set.predictors <- test.set %>% select(-clinton_win_TRUE) %>% scale();
      labels.test <-to_categorical(test.set$clinton_win_TRUE);
      
      dnn.model <- keras_model_sequential();
@@ -554,7 +554,7 @@ bp6 + bp7 + bp8 + guide_area() + plot_layout(ncol=2, guides="collect")
    accuracy.rf <- sum(diag(conf.matrix)) / sum(conf.matrix)
    error.rate.rf <- 1 - accuracy.rf;
    
-  accuracy
+  #accuracy
    
   preds.roc <- predict(rf_clinton, newdata=test.set.rf[,-10], type="prob")
   forest.pred <- ROCR::prediction(preds.roc[,2], test.set.rf$clinton_win);
@@ -581,7 +581,7 @@ bp6 + bp7 + bp8 + guide_area() + plot_layout(ncol=2, guides="collect")
     geom_bar(stat="identity", fill="orange") +
     geom_text(aes(label=paste(format(acc, digits=2, nsmall=2), "%", sep=""),
                   vjust=-1.0)) +
-    labs(x=NULL, y="APER (%)", title="Model APER vs. Classifier Type") +
+    labs(x=NULL, y="ER (%)", title="Model ER vs. Classifier Type") +
     theme_minimal() +
     theme(plot.title=element_text(hjust=0.5))
    
